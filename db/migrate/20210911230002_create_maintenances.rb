@@ -1,13 +1,13 @@
 class CreateMaintenances < ActiveRecord::Migration[6.0]
   def change
     create_table :maintenances do |t|
-      t.string :observations
-      t.string :parts
+      t.text :observations
+      t.text :parts
       t.string :state_before
       t.string :state_after
       t.string :maintenance_type
-      t.string :diagnostic
-      t.string :activities
+      t.text :diagnostic
+      t.text :activities
       t.references :device, null: false, foreign_key: true
       t.references :maintainer, null: false, foreign_key: true
 
