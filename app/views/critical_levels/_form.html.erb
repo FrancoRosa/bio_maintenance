@@ -1,0 +1,27 @@
+<%= form_with(model: critical_level, local: true) do |form| %>
+  <% if critical_level.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(critical_level.errors.count, "error") %> prohibited this critical_level from being saved:</h2>
+
+      <ul>
+        <% critical_level.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :frecuency %>
+    <%= form.number_field :frecuency %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @maintainer.name %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @maintainer.phone %>
+</p>
+
+<p>
+  <strong>Dni:</strong>
+  <%= @maintainer.dni %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @maintainer.email %>
+</p>
+
+<%= link_to 'Edit', edit_maintainer_path(@maintainer) %> |
+<%= link_to 'Back', maintainers_path %>

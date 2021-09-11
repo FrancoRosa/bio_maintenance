@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  brand: MyString
+  model: MyString
+  serial: MyString
+  last_maintenance: 2021-09-11
+  area: one
+  device_type: one
+  critical_level: one
+
+two:
+  name: MyString
+  brand: MyString
+  model: MyString
+  serial: MyString
+  last_maintenance: 2021-09-11
+  area: two
+  device_type: two
+  critical_level: two

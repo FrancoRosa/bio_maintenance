@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Observations:</strong>
+  <%= @maintenance.observations %>
+</p>
+
+<p>
+  <strong>Parts:</strong>
+  <%= @maintenance.parts %>
+</p>
+
+<p>
+  <strong>State before:</strong>
+  <%= @maintenance.state_before %>
+</p>
+
+<p>
+  <strong>State after:</strong>
+  <%= @maintenance.state_after %>
+</p>
+
+<p>
+  <strong>Maintenance type:</strong>
+  <%= @maintenance.maintenance_type %>
+</p>
+
+<p>
+  <strong>Diagnostic:</strong>
+  <%= @maintenance.diagnostic %>
+</p>
+
+<p>
+  <strong>Activities:</strong>
+  <%= @maintenance.activities %>
+</p>
+
+<p>
+  <strong>Device:</strong>
+  <%= @maintenance.device_id %>
+</p>
+
+<p>
+  <strong>Maintainer:</strong>
+  <%= @maintenance.maintainer_id %>
+</p>
+
+<%= link_to 'Edit', edit_maintenance_path(@maintenance) %> |
+<%= link_to 'Back', maintenances_path %>

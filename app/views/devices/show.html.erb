@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @device.name %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @device.brand %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @device.model %>
+</p>
+
+<p>
+  <strong>Serial:</strong>
+  <%= @device.serial %>
+</p>
+
+<p>
+  <strong>Last maintenance:</strong>
+  <%= @device.last_maintenance %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @device.area_id %>
+</p>
+
+<p>
+  <strong>Device type:</strong>
+  <%= @device.device_type_id %>
+</p>
+
+<p>
+  <strong>Critical level:</strong>
+  <%= @device.critical_level_id %>
+</p>
+
+<%= link_to 'Edit', edit_device_path(@device) %> |
+<%= link_to 'Back', devices_path %>

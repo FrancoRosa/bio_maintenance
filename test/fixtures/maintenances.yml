@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  observations: MyString
+  parts: MyString
+  state_before: MyString
+  state_after: MyString
+  maintenance_type: MyString
+  diagnostic: MyString
+  activities: MyString
+  device: one
+  maintainer: one
+
+two:
+  observations: MyString
+  parts: MyString
+  state_before: MyString
+  state_after: MyString
+  maintenance_type: MyString
+  diagnostic: MyString
+  activities: MyString
+  device: two
+  maintainer: two

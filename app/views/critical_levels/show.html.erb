@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @critical_level.name %>
+</p>
+
+<p>
+  <strong>Frecuency:</strong>
+  <%= @critical_level.frecuency %>
+</p>
+
+<%= link_to 'Edit', edit_critical_level_path(@critical_level) %> |
+<%= link_to 'Back', critical_levels_path %>

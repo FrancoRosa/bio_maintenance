@@ -1,0 +1,62 @@
+<%= form_with(model: maintenance, local: true) do |form| %>
+  <% if maintenance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(maintenance.errors.count, "error") %> prohibited this maintenance from being saved:</h2>
+
+      <ul>
+        <% maintenance.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :observations %>
+    <%= form.text_field :observations %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parts %>
+    <%= form.text_field :parts %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state_before %>
+    <%= form.text_field :state_before %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state_after %>
+    <%= form.text_field :state_after %>
+  </div>
+
+  <div class="field">
+    <%= form.label :maintenance_type %>
+    <%= form.text_field :maintenance_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :diagnostic %>
+    <%= form.text_field :diagnostic %>
+  </div>
+
+  <div class="field">
+    <%= form.label :activities %>
+    <%= form.text_field :activities %>
+  </div>
+
+  <div class="field">
+    <%= form.label :device_id %>
+    <%= form.text_field :device_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :maintainer_id %>
+    <%= form.text_field :maintainer_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
