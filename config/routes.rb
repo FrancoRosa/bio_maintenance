@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'facilities#index'
   resources :maintenances
   resources :devices
   resources :maintainers
