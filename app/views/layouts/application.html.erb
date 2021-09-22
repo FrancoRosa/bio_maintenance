@@ -12,22 +12,7 @@
   <body>
     <div class="container">
       <div class="columns">
-        <div class="column is-one-fifth">
-          <aside class="menu mt-4">
-            <p class="menu-label">
-              Navigation
-            </p>
-            <ul class="menu-list">
-              <li><%= link_to "Facilities", facilities_path %></li>
-              <li><%= link_to "Areas", areas_path %></li>
-              <li><%= link_to "Maintainers", maintainers_path %></li>
-              <li><%= link_to "Maintenances", maintenances_path %></li>
-              <li><%= link_to "CriticalLevels", critical_levels_path %></li>
-              <li><%= link_to "DeviceTypes", device_types_path %></li>
-              <li><%= link_to "Devices", devices_path %></li>
-            </ul>
-          </aside>
-        </div>
+        <%= render 'layouts/navigation' %>
         <div class="column">
           <%= yield %>
         </div>
