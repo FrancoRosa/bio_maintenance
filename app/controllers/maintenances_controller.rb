@@ -1,5 +1,5 @@
 class MaintenancesController < ApplicationController
-  before_action :set_maintenance, only: %i[ show edit update destroy ]
+  before_action :set_maintenance, only: %i[show edit update destroy]
 
   # GET /maintenances or /maintenances.json
   def index
@@ -7,8 +7,7 @@ class MaintenancesController < ApplicationController
   end
 
   # GET /maintenances/1 or /maintenances/1.json
-  def show
-  end
+  def show; end
 
   # GET /maintenances/new
   def new
@@ -16,8 +15,7 @@ class MaintenancesController < ApplicationController
   end
 
   # GET /maintenances/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /maintenances or /maintenances.json
   def create
@@ -25,7 +23,7 @@ class MaintenancesController < ApplicationController
 
     respond_to do |format|
       if @maintenance.save
-        format.html { redirect_to @maintenance, notice: "Maintenance was successfully created." }
+        format.html { redirect_to @maintenance, notice: 'Maintenance was successfully created.' }
         format.json { render :show, status: :created, location: @maintenance }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +36,7 @@ class MaintenancesController < ApplicationController
   def update
     respond_to do |format|
       if @maintenance.update(maintenance_params)
-        format.html { redirect_to @maintenance, notice: "Maintenance was successfully updated." }
+        format.html { redirect_to @maintenance, notice: 'Maintenance was successfully updated.' }
         format.json { render :show, status: :ok, location: @maintenance }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,19 +49,27 @@ class MaintenancesController < ApplicationController
   def destroy
     @maintenance.destroy
     respond_to do |format|
-      format.html { redirect_to maintenances_url, notice: "Maintenance was successfully destroyed." }
+      format.html { redirect_to maintenances_url, notice: 'Maintenance was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_maintenance
-      @maintenance = Maintenance.find(params[:id])
-    end
+  def new_maintenance
+    @facilities = Facility.all
+    # Select area
+    # Select device
+  end
 
-    # Only allow a list of trusted parameters through.
-    def maintenance_params
-      params.require(:maintenance).permit(:observations, :parts, :state_before, :state_after, :maintenance_type, :diagnostic, :activities, :device_id, :maintainer_id)
-    end
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_maintenance
+    @maintenance = Maintenance.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def maintenance_params
+    params.require(:maintenance).permit(:observations, :parts, :state_before, :state_after, :maintenance_type,
+                                        :diagnostic, :activities, :device_id, :maintainer_id)
+  end
 end
