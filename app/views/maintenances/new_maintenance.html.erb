@@ -1,10 +1,57 @@
 <h1>
   NEW MAINTENANCE
 </h1>
-<p>
-  Select facility
-</p>
-  <% @facilities.each do |facility| %>
-      <td><%= facility.name %></td>
-      <br />
-  <% end %>
+
+<div class="field">
+  <label class="label">Facility</label>
+  <div class="control">  
+    <div class="select">
+      <select id="facility-selector">
+        <option selected value="0" > - Select - </option>
+        <% @facilities.each do |facility| %>
+            <option value=<%= facility.id %> ><%= facility.name %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="field">
+  <label class="label">Area</label>
+  <div class="control">  
+    <div class="select">
+      <select id="area-selector" disabled>
+        <option selected value="0" > - Select - </option>
+        
+      </select>
+    </div>
+  </div>
+</div>
+
+<script>
+  var facilitiesSelect = document.querySelector('#facility-selector')
+  var areaSelect = document.querySelector('#area-selector')
+  var defaultOption = document.createElement('option')
+  defaultOption.value = 0
+  defaultOption.innerHTML = ' - Select - '
+  
+  facilitiesSelect.addEventListener('change', (e) => {
+    var facility_id = e.target.value 
+    if (facility_id != 0){
+      areaSelect.removeAttribute('disabled')
+      areaSelect.innerHTML = ''
+      areaSelect.appendChild(defaultOption)
+      axios.get('areas.json').then(res => {
+        var areas = res.data.filter(area => area.facility_id == facility_id)
+        areas.forEach(area => {
+          var opt = document.createElement('option');
+          opt.value = area.id;
+          opt.innerHTML = area.name;
+          areaSelect.appendChild(opt);
+        });
+      })
+    } else {
+      areaSelect.setAttribute('disabled', 'disabled')
+    }
+  })
+</script>

@@ -56,8 +56,8 @@ class MaintenancesController < ApplicationController
 
   def new_maintenance
     @facilities = Facility.all
-    # Select area
-    # Select device
+    @areas = Area.all
+    @devices = Device.all
   end
 
   private
