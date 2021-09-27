@@ -13,15 +13,15 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: 'input' %>
   </div>
 
   <div class="field">
     <%= form.label :protocol %>
-    <%= form.text_field :protocol %>
+    <%= form.text_area :protocol, class: "textarea" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => "button mb-4"%>
   </div>
 <% end %>
