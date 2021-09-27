@@ -68,13 +68,23 @@
 
   <div class="field">
     <%= form.label :device_type_id %>
-    <%= form.text_field :device_type_id, class: 'input' %>
+    <div class="control">  
+      <div class="select">
+        <%= form.collection_select :device_type_id, @device_types.order(:name), :id, :name %>
+      </div>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :critical_level_id %>
-    <%= form.text_field :critical_level_id, class: 'input' %>
+    <div class="control">  
+      <div class="select">
+        <%= form.collection_select :critical_level_id, @critical_levels.order(:name), :id, :name %>
+      </div>
+    </div>
   </div>
+
+
 
   <div class="actions">
     <%= form.submit class: "button mb-4 is-success" %>
@@ -86,11 +96,9 @@
   var areaSelect = document.querySelector('#area-selector')
   var defaultOption = document.createElement('option')
   var areaOption = document.querySelector('#device_area_id')
-  // areaOption.setAttribute('disabled', 'disabled')
   
   defaultOption.value = 0
   defaultOption.innerHTML = ' - Select - '
-
 
   facilitiesSelect.addEventListener('change', (e) => {
     var facility_id = e.target.value
