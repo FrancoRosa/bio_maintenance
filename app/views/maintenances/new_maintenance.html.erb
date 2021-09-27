@@ -59,7 +59,7 @@
     areaFlag=false
     if (facility_id != 0){
       areaSelect.innerHTML = ''
-      axios.get('areas.json').then(res => {
+      axios.get('/areas.json').then(res => {
         var areas = res.data.filter(area => area.facility_id == facility_id)
         if (areas.length > 0) {
           areaFlag=true
@@ -87,7 +87,7 @@
 
     if (area_id != 0){
       deviceSelect.innerHTML = ''
-      axios.get('devices.json').then(res => {
+      axios.get('/devices.json').then(res => {
         var devices = res.data.filter(device => device.area_id == area_id)
         if (devices.length > 0) {
 

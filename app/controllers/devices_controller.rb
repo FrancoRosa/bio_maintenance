@@ -12,6 +12,9 @@ class DevicesController < ApplicationController
   # GET /devices/new
   def new
     @device = Device.new
+    @facilities = Facility.all
+    @device_types = DeviceType.all
+    @critical_levels = CriticalLevel.all
   end
 
   # GET /devices/1/edit
@@ -20,6 +23,7 @@ class DevicesController < ApplicationController
   # POST /devices or /devices.json
   def create
     @device = Device.new(device_params)
+    @facilities = Facility.all
 
     respond_to do |format|
       if @device.save

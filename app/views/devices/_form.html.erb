@@ -13,45 +13,111 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: 'input' %>
   </div>
 
   <div class="field">
     <%= form.label :brand %>
-    <%= form.text_field :brand %>
+    <%= form.text_field :brand, class: 'input' %>
   </div>
 
   <div class="field">
     <%= form.label :model %>
-    <%= form.text_field :model %>
+    <%= form.text_field :model, class: 'input' %>
   </div>
 
   <div class="field">
     <%= form.label :serial %>
-    <%= form.text_field :serial %>
+    <%= form.text_field :serial, class: 'input' %>
   </div>
 
   <div class="field">
     <%= form.label :last_maintenance %>
-    <%= form.date_select :last_maintenance %>
+    <div class="select is-flex">
+      <%= form.date_select :last_maintenance %>
+    </div>
   </div>
 
   <div class="field">
+    <label class="label">Facility</label>
+    <div class="control">  
+      <div class="select">
+        <select id="facility-selector">
+          <% @facilities.each do |facility| %>
+              <option value=<%= facility.id %> ><%= facility.name %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Area</label>
+    <div class="control">  
+      <div class="select">
+        <select id="area-selector" disabled>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-hidden">
     <%= form.label :area_id %>
     <%= form.text_field :area_id %>
   </div>
 
   <div class="field">
     <%= form.label :device_type_id %>
-    <%= form.text_field :device_type_id %>
+    <%= form.text_field :device_type_id, class: 'input' %>
   </div>
 
   <div class="field">
     <%= form.label :critical_level_id %>
-    <%= form.text_field :critical_level_id %>
+    <%= form.text_field :critical_level_id, class: 'input' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "button mb-4 is-success" %>
   </div>
 <% end %>
+
+<script>
+  var facilitiesSelect = document.querySelector('#facility-selector')
+  var areaSelect = document.querySelector('#area-selector')
+  var defaultOption = document.createElement('option')
+  var areaOption = document.querySelector('#device_area_id')
+  // areaOption.setAttribute('disabled', 'disabled')
+  
+  defaultOption.value = 0
+  defaultOption.innerHTML = ' - Select - '
+
+
+  facilitiesSelect.addEventListener('change', (e) => {
+    var facility_id = e.target.value
+    areaSelect.innerHTML = ''
+    axios.get('/areas.json').then(res => {
+      var areas = res.data.filter(area => area.facility_id == facility_id)
+      if (areas.length > 0) {
+        areaFlag=true
+        areaSelect.removeAttribute('disabled');
+        areaOption.value = areas[0].id
+        areas.forEach(area => {
+          var opt = document.createElement('option');
+          opt.value = area.id;
+          opt.innerHTML = area.name;
+          areaSelect.appendChild(opt);
+        })
+      } else {
+        areaSelect.setAttribute('disabled', 'disabled')
+        areaSelect.appendChild(defaultOption)
+      }
+    })
+  })
+  
+  areaSelect.addEventListener('change', (e) => {
+    var areaId = e.target.value 
+    if (areaId != 0) areaOption.value = areaId  
+  })
+
+
+</script>
