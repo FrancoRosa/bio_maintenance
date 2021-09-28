@@ -17,7 +17,9 @@ class AreasController < ApplicationController
   end
 
   # GET /areas/1/edit
-  def edit; end
+  def edit
+    @facilities = Facility.all
+  end
 
   # POST /areas or /areas.json
   def create
