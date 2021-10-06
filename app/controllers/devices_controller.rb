@@ -62,6 +62,7 @@ class DevicesController < ApplicationController
     @facility = @device.area.facility
     @area = @device.area
     @device_type = @device.device_type
+    @actions = get_actions(@device_type.protocol)
   end
 
   private
@@ -75,5 +76,19 @@ class DevicesController < ApplicationController
   def device_params
     params.require(:device).permit(:name, :brand, :model, :serial, :last_maintenance, :area_id, :device_type_id,
                                    :critical_level_id)
+  end
+
+  def get_actions(protocol)
+    limit = 10
+    actions = protocol.split("\n")
+    actions.map!(&:strip)
+
+    if actions.length >= limit
+      actions.take(limit)
+    else
+      pad = limit - actions.length
+      pad.times { |_i| actions.push('') }
+      actions
+    end
   end
 end

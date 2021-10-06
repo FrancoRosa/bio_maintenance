@@ -18,6 +18,9 @@
 		.empty {
 			line-height: 0.5;
 		}
+		.l1 {
+			line-height: 1;
+		}
 
 		a.comment-indicator:hover + comment {
 			background:#ffd;
@@ -70,7 +73,7 @@
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#D0CECE"><font size=1 color="#000000">Fecha de emision</font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdval="44363" sdnum="1033;0;M/D/YYYY"><font color="#000000">6/16/2021</font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdval="44363" sdnum="1033;0;M/D/YYYY"><font color="#000000"><%= Time.now.strftime('%d/%m/%Y')%></font></td>
 	</tr>
 	<tr class="empty">
 		<td height="18" align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -114,7 +117,7 @@
 	</tr>
 	<tr>
 		<td colspan=3 height="18" align="left" valign=middle><b><font color="#000000">Denominacion general del equipo:</font></b></td>
-		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
+		<td colspan=3 height="18" align="left" valign=middle><b><font color="#000000"><%=@device_type.name%></font></b></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -124,7 +127,7 @@
 	</tr>
 	<tr>
 		<td colspan=3 height="18" align="left" valign=middle><b><font color="#000000">Denominacion especifica:</font></b></td>
-		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
+		<td colspan=3 height="18" align="left" valign=middle><b><font color="#000000"><%= @device.name %></font></b></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -133,13 +136,13 @@
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 	</tr>
 	<tr>
-		<td colspan=2 height="18" align="left" valign=bottom><b><font color="#000000">Marca:</font></b></td>
-		<td align="left" valign=bottom><font color="#000000"><br></font></td>
-		<td colspan=2 align="center" valign=middle><font color="#000000"><br></font></td>
+		<td colspan=3 height="18" align="left" valign=bottom><b><font color="#000000">Marca:</font></b></td>
+		<td colspan=2 height="18" align="left" valign=bottom><b><font color="#000000"><%= @device.brand %></font></b></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><b><font color="#000000">Modelo:</font></b></td>
-		<td align="left" valign=bottom><font color="#000000"><br></font></td>
+		<td align="left" valign=bottom><b><font color="#000000"><%= @device.model %></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000">Serie:</font></b></td>
+		<td align="left" valign=bottom><b><font color="#000000"><%= @device.serial %></font></b></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 	</tr>
 	<tr>
@@ -252,10 +255,17 @@
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 	</tr>
 	<tr>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="18" align="left" valign=bottom bgcolor="#D0CECE"><font color="#000000">Nro.</font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="18" align="center" valign=bottom bgcolor="#D0CECE"><font color="#000000">Nro.</font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=9 align="center" valign=bottom bgcolor="#D0CECE"><font color="#000000">Descripcion de la actividad ejecutada</font></td>
 		</tr>
-	<tr>
+	<% @actions.each_with_index do |action, i| %>
+		<tr class="l1">
+			<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="18" align="center" valign=bottom sdval="<%= i +1 %>" sdnum="1033;"><font color="#000000"><%= i +1 %></font></td>
+			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=9 align="left" valign=bottom><font color="#000000"><br> <%= action %></font></td>
+		</tr>
+	<% end %>
+
+	<!-- <tr>
 		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="18" align="center" valign=bottom sdval="1" sdnum="1033;"><font color="#000000">1</font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=9 align="center" valign=bottom><font color="#000000"><br></font></td>
 		</tr>
@@ -294,7 +304,7 @@
 	<tr>
 		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="18" align="center" valign=bottom sdval="10" sdnum="1033;"><font color="#000000">10</font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=9 align="center" valign=bottom><font color="#000000"><br></font></td>
-		</tr>
+		</tr> -->
 	<tr>
 		<td height="10" align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="center" valign=bottom><font color="#000000"><br></font></td>
