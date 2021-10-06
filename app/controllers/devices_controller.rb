@@ -63,6 +63,7 @@ class DevicesController < ApplicationController
     @area = @device.area
     @device_type = @device.device_type
     @actions = get_actions(@device_type.protocol)
+    @format_code = get_format_code(@device)
   end
 
   private
@@ -90,5 +91,13 @@ class DevicesController < ApplicationController
       pad.times { |_i| actions.push('') }
       actions
     end
+  end
+
+  def get_format_code(device)
+    id = device.id.to_s
+    maintenances = (device.maintenances.count + 1).to_s
+    id = id.rjust(4, '0')
+    maintenances = maintenances.rjust(4, '0')
+    "#{id} - #{maintenances}"
   end
 end
