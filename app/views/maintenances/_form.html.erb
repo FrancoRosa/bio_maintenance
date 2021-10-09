@@ -13,50 +13,52 @@
 
   <div class="field">
     <%= form.label :observations %>
-    <%= form.text_field :observations %>
+    <%= form.text_field :observations, class: 'input'  %>
   </div>
 
   <div class="field">
     <%= form.label :parts %>
-    <%= form.text_field :parts %>
+    <%= form.text_field :parts, class: 'input'  %>
   </div>
 
   <div class="field">
     <%= form.label :state_before %>
-    <%= form.text_field :state_before %>
+    <%= form.text_field :state_before, class: 'input'  %>
   </div>
 
   <div class="field">
     <%= form.label :state_after %>
-    <%= form.text_field :state_after %>
+    <%= form.text_field :state_after, class: 'input'  %>
   </div>
 
   <div class="field">
     <%= form.label :maintenance_type %>
-    <%= form.select :maintenance_type, ['Preventivo','Correctivo','Instalacion','Otro'] %>
+    <div class='select'>
+      <%= form.select :maintenance_type, ['Preventivo','Correctivo','Instalacion','Otro']  %>
+    </div>
   </div>
 
   <div class="field">
     <%= form.label :diagnostic %>
-    <%= form.text_field :diagnostic %>
+    <%= form.text_field :diagnostic, class: 'input' %>
   </div>
 
   <div class="field">
     <%= form.label :activities %>
-    <%= form.text_field :activities %>
+    <%= form.text_field :activities, class: 'input' %>
   </div>
 
   <div class="field">
     <%= form.label :device_id %>
-    <%= form.text_field :device_id %>
+    <%= form.text_field :device_id, class: 'input' %>
   </div>
 
   <div class="field">
     <%= form.label :maintainer_id %>
-    <%= form.text_field :maintainer_id %>
+    <%= form.text_field :maintainer_id, class: 'input' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "button mb-4 is-success" %>
   </div>
 <% end %>
