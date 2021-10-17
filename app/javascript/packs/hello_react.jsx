@@ -7,9 +7,7 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import App from "../components/App";
 
+const position = document.querySelector("#react");
 document.addEventListener("DOMContentLoaded", () => {
-  ReactDOM.render(
-    <App />,
-    document.body.appendChild(document.createElement("div"))
-  );
+  ReactDOM.render(<App />, position);
 });
