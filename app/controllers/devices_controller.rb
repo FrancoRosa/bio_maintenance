@@ -66,6 +66,10 @@ class DevicesController < ApplicationController
     @format_code = get_format_code(@device)
   end
 
+  def next_maintenances
+    @devices = Device.all
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
