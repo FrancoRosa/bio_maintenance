@@ -75,6 +75,9 @@ class DevicesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_device
     @device = Device.find(params[:id])
+    @facilities = Facility.all
+    @device_types = DeviceType.all
+    @critical_levels = CriticalLevel.all
   end
 
   # Only allow a list of trusted parameters through.

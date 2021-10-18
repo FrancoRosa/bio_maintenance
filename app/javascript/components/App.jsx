@@ -5,7 +5,12 @@ import {
   getDevices,
   getFacilities,
 } from "../helpers/api";
-import { getNameById, getParentName, getProximity } from "../helpers/extra";
+import {
+  getNameById,
+  getParentName,
+  getTimeStatus,
+  getNextMaintenance,
+} from "../helpers/extra";
 
 const App = () => {
   const [facilities, setFacilities] = useState([]);
@@ -73,10 +78,12 @@ const App = () => {
   useEffect(() => {
     if (devices.length && criticalLevels.length) {
       devices.forEach((d) => {
-        getProximity(d, criticalLevels);
+        d.next = getNextMaintenance(d, criticalLevels);
+        d.status = getTimeStatus(d, criticalLevels);
       });
+      setDevices([...devices]);
     }
-  }, [devices, criticalLevels]);
+  }, [criticalLevels]);
 
   return (
     <>
@@ -146,12 +153,13 @@ const App = () => {
             <th>Modelo</th>
             <th>Serie</th>
             <th>Criticidad</th>
-            <th>UltimoMan</th>
+            <th>Ultimo Man</th>
+            <th>Proximo Man</th>
           </tr>
         </thead>
         <tbody>
           {filteredDevices.map((d, i) => (
-            <tr>
+            <tr className={"has-background-" + d.status + "-light"}>
               <td>{i}</td>
               <td>{getParentName(facilities, areas, d.area_id)}</td>
               <td>{getNameById(areas, d.area_id)}</td>
@@ -161,6 +169,7 @@ const App = () => {
               <td>{d.serial}</td>
               <td>{getNameById(criticalLevels, d.critical_level_id)}</td>
               <td>{d.last_maintenance}</td>
+              <td className={"has-text-" + d.status + "-dark"}>{d.next}</td>
             </tr>
           ))}
         </tbody>

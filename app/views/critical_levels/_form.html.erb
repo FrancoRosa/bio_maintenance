@@ -13,15 +13,15 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: 'input'%>
   </div>
 
   <div class="field">
     <%= form.label :frecuency %>
-    <%= form.number_field :frecuency %>
+    <%= form.number_field :frecuency, class: 'input' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "button mb-4 is-success"%>
   </div>
 <% end %>
