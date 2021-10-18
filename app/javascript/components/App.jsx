@@ -5,7 +5,7 @@ import {
   getDevices,
   getFacilities,
 } from "../helpers/api";
-import { getNameById, getParentName } from "../helpers/extra";
+import { getNameById, getParentName, getProximity } from "../helpers/extra";
 
 const App = () => {
   const [facilities, setFacilities] = useState([]);
@@ -13,29 +13,70 @@ const App = () => {
   const [devices, setDevices] = useState([]);
   const [criticalLevels, setCriticalLevels] = useState([]);
   const [filteredDevices, setFilteredDevices] = useState([]);
+  const [filteredAreas, setFilteredAreas] = useState([]);
+  const [area, setArea] = useState(0);
+  const [facility, setFacility] = useState(0);
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     getFacilities().then((res) => {
       setFacilities(res);
-      console.log(res);
     });
 
     getAreas().then((res) => {
       setAreas(res);
-      console.log(res);
+      setFilteredAreas(res);
     });
 
     getDevices().then((res) => {
       setDevices(res);
       setFilteredDevices(res);
-      console.log(res);
     });
 
     getCriticalLevels().then((res) => {
       setCriticalLevels(res);
-      console.log(res);
     });
   }, []);
+
+  useEffect(() => {
+    console.log(filter);
+  }, [filter]);
+
+  useEffect(() => {
+    console.log("Facility:", facility);
+    if (facility === 0) {
+      setFilteredAreas([...areas]);
+      setArea(0);
+    } else {
+      setFilteredAreas(areas.filter((a) => a.facility_id == facility));
+    }
+  }, [facility]);
+
+  useEffect(() => {
+    if (area === 0) {
+      setFilteredDevices(
+        devices.filter((d) =>
+          filteredAreas.map((a) => a.id).includes(d.area_id)
+        )
+      );
+    } else {
+      setFilteredDevices(devices.filter((d) => area === d.area_id));
+    }
+  }, [area]);
+
+  useEffect(() => {
+    setFilteredDevices(
+      devices.filter((d) => filteredAreas.map((a) => a.id).includes(d.area_id))
+    );
+  }, [filteredAreas]);
+
+  useEffect(() => {
+    if (devices.length && criticalLevels.length) {
+      devices.forEach((d) => {
+        getProximity(d, criticalLevels);
+      });
+    }
+  }, [devices, criticalLevels]);
 
   return (
     <>
@@ -45,7 +86,11 @@ const App = () => {
             <label className="label">Facilities</label>
             <div className="control">
               <div className="select">
-                <select>
+                <select
+                  value={facility}
+                  onChange={(e) => setFacility(parseInt(e.target.value))}
+                >
+                  <option value={0}>Todos</option>
                   {facilities.map((f) => (
                     <option value={f.id}>{f.name}</option>
                   ))}
@@ -60,8 +105,13 @@ const App = () => {
             <label className="label">Areas</label>
             <div className="control">
               <div className="select">
-                <select>
-                  {areas.map((f) => (
+                <select
+                  value={area}
+                  onChange={(e) => setArea(parseInt(e.target.value))}
+                  disabled={facility == 0}
+                >
+                  <option value={0}>Todos</option>
+                  {filteredAreas.map((f) => (
                     <option value={f.id}>{f.name}</option>
                   ))}
                 </select>
@@ -74,13 +124,18 @@ const App = () => {
           <div className="field">
             <label className="label">Filter</label>
             <div className="control">
-              <input type="text" className="input" />
+              <input
+                type="text"
+                className="input"
+                value={filter}
+                onChange={(e) => setFilter(e.target.value)}
+              />
             </div>
           </div>
         </div>
       </div>
 
-      <table class="table">
+      <table class="table is-narrow is-hoverable">
         <thead>
           <tr>
             <th>Nro</th>

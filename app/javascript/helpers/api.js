@@ -30,7 +30,7 @@ export const getAreas = async () => {
 };
 
 export const getCriticalLevels = async () => {
-  console.log("... retrieving crtical levels");
+  console.log("... retrieving critical levels");
   const url = "/critical_levels.json";
   const response = await axios.get(url);
   return response.data;
