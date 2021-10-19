@@ -53,3 +53,12 @@ export const getNextMaintenance = (device, criticalLevels) => {
   const nextMaintenance = lastMaintenance.getTime() + days * millisInDay;
   return toStrDate(new Date(nextMaintenance));
 };
+
+export const objectToString = (obj) => {
+  let str = "";
+  Object.keys(obj).forEach((key) => {
+    str += obj[key].toString();
+    str += " ";
+  });
+  return str.toLowerCase();
+};

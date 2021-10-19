@@ -10,6 +10,7 @@ import {
   getParentName,
   getTimeStatus,
   getNextMaintenance,
+  objectToString,
 } from "../helpers/extra";
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
   const [devices, setDevices] = useState([]);
   const [criticalLevels, setCriticalLevels] = useState([]);
   const [filteredDevices, setFilteredDevices] = useState([]);
+  const [beforeFilter, setBeforeFilter] = useState([]);
   const [filteredAreas, setFilteredAreas] = useState([]);
   const [area, setArea] = useState(0);
   const [facility, setFacility] = useState(0);
@@ -36,6 +38,7 @@ const App = () => {
     getDevices().then((res) => {
       setDevices(res);
       setFilteredDevices(res);
+      setBeforeFilter(res);
     });
 
     getCriticalLevels().then((res) => {
@@ -44,7 +47,17 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    console.log(filter);
+    const applyFilter = () => {
+      if (filter.length >= 2) {
+        const filtered = beforeFilter.filter((row) =>
+          objectToString(row).includes(filter.toLocaleLowerCase())
+        );
+        setFilteredDevices(filtered);
+      } else {
+        setFilteredDevices(beforeFilter);
+      }
+    };
+    applyFilter();
   }, [filter]);
 
   useEffect(() => {
@@ -59,18 +72,22 @@ const App = () => {
 
   useEffect(() => {
     if (area === 0) {
-      setFilteredDevices(
-        devices.filter((d) =>
-          filteredAreas.map((a) => a.id).includes(d.area_id)
-        )
+      const filterByArea = devices.filter((d) =>
+        filteredAreas.map((a) => a.id).includes(d.area_id)
       );
+      setFilteredDevices(filterByArea);
+      setBeforeFilter(filterByArea);
     } else {
       setFilteredDevices(devices.filter((d) => area === d.area_id));
+      setBeforeFilter(devices.filter((d) => area === d.area_id));
     }
   }, [area]);
 
   useEffect(() => {
     setFilteredDevices(
+      devices.filter((d) => filteredAreas.map((a) => a.id).includes(d.area_id))
+    );
+    setBeforeFilter(
       devices.filter((d) => filteredAreas.map((a) => a.id).includes(d.area_id))
     );
   }, [filteredAreas]);
@@ -87,7 +104,8 @@ const App = () => {
 
   return (
     <>
-      <div className="columns mt-4">
+      <h1 className="title is-3">Proximos Mantenimientos</h1>
+      <div className="columns mt-4 mr-4">
         <div className="column">
           <div className="field">
             <label className="label">Facilities</label>
@@ -142,7 +160,7 @@ const App = () => {
         </div>
       </div>
 
-      <table class="table is-narrow is-hoverable">
+      <table className="table is-narrow is-hoverable">
         <thead>
           <tr>
             <th>Nro</th>
@@ -159,7 +177,7 @@ const App = () => {
         </thead>
         <tbody>
           {filteredDevices.map((d, i) => (
-            <tr className={"has-background-" + d.status + "-light"}>
+            <tr key={d.id} className={"has-background-" + d.status + "-light"}>
               <td>{i}</td>
               <td>{getParentName(facilities, areas, d.area_id)}</td>
               <td>{getNameById(areas, d.area_id)}</td>
