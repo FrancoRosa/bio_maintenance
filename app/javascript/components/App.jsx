@@ -10,7 +10,7 @@ import {
   getParentName,
   getTimeStatus,
   getNextMaintenance,
-  objectToString,
+  deviceToString,
 } from "../helpers/extra";
 
 const App = () => {
@@ -50,7 +50,9 @@ const App = () => {
     const applyFilter = () => {
       if (filter.length >= 2) {
         const filtered = beforeFilter.filter((row) =>
-          objectToString(row).includes(filter.toLocaleLowerCase())
+          deviceToString(row, areas, facilities, criticalLevels).includes(
+            filter.toLocaleLowerCase()
+          )
         );
         setFilteredDevices(filtered);
       } else {
@@ -104,11 +106,11 @@ const App = () => {
 
   return (
     <>
-      <h1 className="title is-3">Proximos Mantenimientos</h1>
+      <h1 className="title is-3 mt-4">Próximos Mantenimientos</h1>
       <div className="columns mt-4 mr-4">
         <div className="column">
           <div className="field">
-            <label className="label">Facilities</label>
+            <label className="label">Ubicaciones</label>
             <div className="control">
               <div className="select">
                 <select
@@ -147,7 +149,7 @@ const App = () => {
 
         <div className="column">
           <div className="field">
-            <label className="label">Filter</label>
+            <label className="label">Filtrar</label>
             <div className="control">
               <input
                 type="text"
@@ -156,6 +158,7 @@ const App = () => {
                 onChange={(e) => setFilter(e.target.value)}
               />
             </div>
+            <p class="help">Tambien puede filtrar por: ok, pronto o demorado</p>
           </div>
         </div>
       </div>

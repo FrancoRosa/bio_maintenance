@@ -78,6 +78,10 @@ class DevicesController < ApplicationController
     @facilities = Facility.all
     @device_types = DeviceType.all
     @critical_levels = CriticalLevel.all
+    @facility = @device.area.facility
+    @area = @device.area
+    @critical_level = @device.critical_level
+    @device_type = @device.device_type
   end
 
   # Only allow a list of trusted parameters through.

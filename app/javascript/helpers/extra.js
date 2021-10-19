@@ -24,7 +24,7 @@ export const getNameById = (arr, id) => {
 
 export const getParentName = (facilities, areas, id) => {
   const area = areas.filter((a) => a.id == id)[0];
-  const facility = facilities.filter((f) => f.id == area.facility_id)[0];
+  const facility = facilities.find((f) => f.id == area?.facility_id);
   return facility?.name;
 };
 
@@ -54,11 +54,32 @@ export const getNextMaintenance = (device, criticalLevels) => {
   return toStrDate(new Date(nextMaintenance));
 };
 
-export const objectToString = (obj) => {
-  let str = "";
-  Object.keys(obj).forEach((key) => {
-    str += obj[key].toString();
-    str += " ";
-  });
-  return str.toLowerCase();
+const statusToSpanish = (status) => {
+  switch (status) {
+    case "success":
+      return "ok";
+    case "warning":
+      return "pronto";
+    case "danger":
+      return "demorado";
+    default:
+      return "";
+  }
+};
+
+export const deviceToString = (obj, areas, facilities, criticalLevels) => {
+  const str = [
+    getParentName(facilities, areas, obj.area_id),
+    obj.next,
+    getNameById(areas, obj.area_id),
+    obj.name,
+    obj.brand,
+    obj.model,
+    obj.serial,
+    getNameById(criticalLevels, obj.critical_level_id),
+    obj.last_maintenance,
+    obj.next,
+    statusToSpanish(obj.status),
+  ];
+  return str.join(" ").toLowerCase();
 };
