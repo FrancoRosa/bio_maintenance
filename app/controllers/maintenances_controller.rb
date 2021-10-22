@@ -12,10 +12,13 @@ class MaintenancesController < ApplicationController
   # GET /maintenances/new
   def new
     @maintenance = Maintenance.new
+    @maintainers = Maintainer.all
   end
 
   # GET /maintenances/1/edit
-  def edit; end
+  def edit
+    @maintainers = Maintainer.all
+  end
 
   # POST /maintenances or /maintenances.json
   def create

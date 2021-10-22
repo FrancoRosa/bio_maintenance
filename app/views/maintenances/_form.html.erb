@@ -54,8 +54,12 @@
   </div>
 
   <div class="field">
-    <%= form.label :maintainer_id %>
-    <%= form.text_field :maintainer_id, class: 'input' %>
+    <%= form.label :mantainer_id %>
+    <div class="control">  
+      <div class="select">
+        <%= form.collection_select :mantainer_id, @maintainers.order(:name), :id, :name %>
+      </div>
+    </div>
   </div>
 
   <div class="actions">
