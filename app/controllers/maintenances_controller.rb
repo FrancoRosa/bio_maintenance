@@ -1,4 +1,5 @@
 class MaintenancesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_maintenance, only: %i[show edit update destroy]
 
   # GET /maintenances or /maintenances.json
