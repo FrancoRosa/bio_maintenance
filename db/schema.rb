@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_11_230002) do
+ActiveRecord::Schema.define(version: 2021_10_22_154728) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name"
@@ -87,6 +87,16 @@ ActiveRecord::Schema.define(version: 2021_09_11_230002) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["device_id"], name: "index_maintenances_on_device_id"
     t.index ["maintainer_id"], name: "index_maintenances_on_maintainer_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "password"
+    t.string "user_type"
+    t.integer "maintainer_id"
+    t.integer "facility_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "areas", "facilities"

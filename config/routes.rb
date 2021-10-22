@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   root 'facilities#index'
   get '/new_maintenance_report', to: 'maintenances#new_maintenance', as: 'new_maintenance_report'
   get '/next_maintenances', to: 'devices#next_maintenances', as: 'next_maintenances'

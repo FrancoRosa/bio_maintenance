@@ -44,7 +44,7 @@
       <div class="select">
         <select id="facility-selector">
           <% @facilities.each do |facility| %>
-              <option value=<%= facility.id %> selected=<%= facility.id == @facility.id%> >
+              <option value=<%= facility.id %> >
                 <%= facility.name %>
               </option>
           <% end %>
