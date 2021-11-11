@@ -23,14 +23,19 @@
 
   <div class="field">
     <%= form.label :user_type %>
-    <%= form.text_field :user_type, class: 'input'   %>
+
+  <div class="control">  
+      <div class="select">
+    <%= form.select :user_type, ['client','maintainer','admin']%>
+    </div>
+    </div>
   </div>
 
   <div class="field">
-    <%= form.label :mantainer_id %>
+    <%= form.label :maintainer_id %>
     <div class="control">  
       <div class="select">
-        <%= form.collection_select :mantainer_id, @maintainers.order(:name), :id, :name %>
+        <%= form.collection_select :maintainer_id, @maintainers.order(:name), :id, :name %>
       </div>
     </div>
   </div>
