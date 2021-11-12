@@ -18,8 +18,28 @@
 
 body {
   width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(
+    to right,
+    #afbed6,
+    #b9d0dbbb,
+    #afe6f059
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.container {
-  width: 100vw;
+.table {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.icons > a > svg {
+  height: 2em;
+}
+
+.transparency {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.footer {
+  position: relative;
+  bottom: -5em;
 }
