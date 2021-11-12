@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/new_maintenance_report', to: 'maintenances#new_maintenance', as: 'new_maintenance_report'
   get '/next_maintenances', to: 'devices#next_maintenances', as: 'next_maintenances'
   get '/maintenance_report/:id', to: 'devices#report', as: 'report'
+  get '/login', to: 'login#index'
+  post '/login', to: 'login#create'
   resources :maintenances
   resources :devices
   resources :maintainers
