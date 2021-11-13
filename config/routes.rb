@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/maintenance_report/:id', to: 'devices#report', as: 'report'
   get '/login', to: 'login#index'
   post '/login', to: 'login#create'
+  delete '/login', to: 'login#destroy'
   resources :maintenances
   resources :devices
   resources :maintainers
