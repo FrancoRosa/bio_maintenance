@@ -13,15 +13,21 @@
   </head>
 
   <body>
-    <%= render 'layouts/topbar' %>
+    <% if cookies[:visitor_password_verified] %>
+      <%= render 'layouts/topbar' %>
+    <% end %>
     <div class="container is-fullhd p-4">
       <div class="columns">
+      <% if cookies[:visitor_password_verified] %>
         <%= render 'layouts/navigation' %>
+      <% end %>
         <div class="column" id="react">
           <%= yield %>
         </div>
       </div>
     </div>
-    <%= render 'layouts/footer' %>
+    <% if cookies[:visitor_password_verified] %>
+      <%= render 'layouts/footer' %>
+    <% end %>
   </body>
 </html>

@@ -1,4 +1,5 @@
 class AreasController < ApplicationController
+  before_action :require_password_verification
   before_action :set_area, only: %i[show edit update destroy]
 
   # GET /areas or /areas.json

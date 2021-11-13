@@ -3,6 +3,7 @@ class LoginController < ApplicationController
 
   def destroy
     cookies.delete(:visitor_password_verified)
+    redirect_to(root_path)
   end
 
   def create

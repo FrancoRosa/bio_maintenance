@@ -1,5 +1,6 @@
 class CriticalLevelsController < ApplicationController
-  before_action :set_critical_level, only: %i[ show edit update destroy ]
+  before_action :require_password_verification
+  before_action :set_critical_level, only: %i[show edit update destroy]
 
   # GET /critical_levels or /critical_levels.json
   def index
@@ -7,8 +8,7 @@ class CriticalLevelsController < ApplicationController
   end
 
   # GET /critical_levels/1 or /critical_levels/1.json
-  def show
-  end
+  def show; end
 
   # GET /critical_levels/new
   def new
@@ -16,8 +16,7 @@ class CriticalLevelsController < ApplicationController
   end
 
   # GET /critical_levels/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /critical_levels or /critical_levels.json
   def create
@@ -25,7 +24,7 @@ class CriticalLevelsController < ApplicationController
 
     respond_to do |format|
       if @critical_level.save
-        format.html { redirect_to @critical_level, notice: "Critical level was successfully created." }
+        format.html { redirect_to @critical_level, notice: 'Critical level was successfully created.' }
         format.json { render :show, status: :created, location: @critical_level }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +37,7 @@ class CriticalLevelsController < ApplicationController
   def update
     respond_to do |format|
       if @critical_level.update(critical_level_params)
-        format.html { redirect_to @critical_level, notice: "Critical level was successfully updated." }
+        format.html { redirect_to @critical_level, notice: 'Critical level was successfully updated.' }
         format.json { render :show, status: :ok, location: @critical_level }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,19 +50,20 @@ class CriticalLevelsController < ApplicationController
   def destroy
     @critical_level.destroy
     respond_to do |format|
-      format.html { redirect_to critical_levels_url, notice: "Critical level was successfully destroyed." }
+      format.html { redirect_to critical_levels_url, notice: 'Critical level was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_critical_level
-      @critical_level = CriticalLevel.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def critical_level_params
-      params.require(:critical_level).permit(:name, :frecuency)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_critical_level
+    @critical_level = CriticalLevel.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def critical_level_params
+    params.require(:critical_level).permit(:name, :frecuency)
+  end
 end

@@ -1,4 +1,5 @@
 class MaintainersController < ApplicationController
+  before_action :require_password_verification
   before_action :set_maintainer, only: %i[ show edit update destroy ]
 
   # GET /maintainers or /maintainers.json

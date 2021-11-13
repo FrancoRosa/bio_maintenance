@@ -1,4 +1,5 @@
 class DevicesController < ApplicationController
+  before_action :require_password_verification
   before_action :set_device, only: %i[show edit update destroy report]
 
   # GET /devices or /devices.json

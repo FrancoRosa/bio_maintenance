@@ -5,22 +5,24 @@
     is-align-items-center
     is-flex-direction-column
   "
+  style="height: 100vh;"
 >
   <div class="card" style="width: 50%;"">
     <form action="/login" method="post">
     <div class="card-content">
+      <p class="is-5 subtitle has-text-centered">Soluciones Biomedicas Peruanas</p>
       <input
         type="password"
         id="fname"
-        class="input"
+        class="input has-text-centered"
         name="password"
-        placeholder="password"
+        placeholder="********"
       />
-      <p id="notice"><%= notice %></p>
+      <p id="notice" class="mt-4 has-text-centered"><%= notice %></p>
     </div>
     <div class="card-footer">
       <div class="card-footer-item">
-        <input type="submit" value="Submit" class="button" />
+        <input type="submit" value="Enter" class="button" />
       </div>
     </div>
   </form>

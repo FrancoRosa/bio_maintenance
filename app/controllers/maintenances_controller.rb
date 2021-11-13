@@ -1,4 +1,5 @@
 class MaintenancesController < ApplicationController
+  before_action :require_password_verification
   skip_before_action :verify_authenticity_token
   before_action :set_maintenance, only: %i[show edit update destroy]
 
