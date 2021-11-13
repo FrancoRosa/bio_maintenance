@@ -10,6 +10,8 @@
   <div class="navbar-brand">
     <p class="navbar-item title is-4">Soluciones Biomedicas Peruanas</p>
   </div>
-  <%= button_to "Log out", login_path, class: "button is-small is-rounded mb-3",
-  method: :get %>
+  <% if cookies[:visitor_password_verified] %>
+    <%= button_to "Log out", login_path, class: "button is-small is-rounded mb-3",
+    method: :delete %>
+  <% end %>
 </nav>

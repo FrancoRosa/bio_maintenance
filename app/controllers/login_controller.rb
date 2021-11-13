@@ -2,11 +2,7 @@ class LoginController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def destroy
-    p 'do somethibf'
-    p 'do somethibf'
-    p 'do somethibf'
-    p 'do somethibf'
-    p 'do somethibf'
+    cookies.delete(:visitor_password_verified)
   end
 
   def create
