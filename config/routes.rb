@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :users
-  root 'facilities#index'
+  root to: 'admin/dashboard#index'
   get '/new_maintenance_report', to: 'maintenances#new_maintenance', as: 'new_maintenance_report'
   get '/next_maintenances', to: 'devices#next_maintenances', as: 'next_maintenances'
   get '/maintenance_report/:id', to: 'devices#report', as: 'report'
