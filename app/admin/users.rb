@@ -4,7 +4,7 @@ ActiveAdmin.register User do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :name, :password, :user_type, :maintainer_id, :facility_id
+  permit_params :name, :password, :user_type, :maintainer_id, :facility_id
   #
   # or
   #

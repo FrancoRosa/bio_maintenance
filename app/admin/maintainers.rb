@@ -5,7 +5,7 @@ ActiveAdmin.register Maintainer do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :name, :phone, :dni, :email
+  permit_params :name, :phone, :dni, :email
   #
   # or
   #

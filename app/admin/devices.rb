@@ -5,7 +5,7 @@ ActiveAdmin.register Device do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :name, :brand, :model, :serial, :last_maintenance, :area_id, :device_type_id, :critical_level_id
+  permit_params :name, :brand, :model, :serial, :last_maintenance, :area_id, :device_type_id, :critical_level_id
   #
   # or
   #

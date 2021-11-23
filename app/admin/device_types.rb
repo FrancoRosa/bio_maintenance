@@ -5,7 +5,7 @@ ActiveAdmin.register DeviceType do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :name, :protocol
+  permit_params :name, :protocol
   #
   # or
   #

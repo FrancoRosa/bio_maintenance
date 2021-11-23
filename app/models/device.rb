@@ -1,5 +1,6 @@
 class Device < ApplicationRecord
   belongs_to :area
+  has_one :facility, through: :area
   belongs_to :device_type
   belongs_to :critical_level
   has_many :maintenances

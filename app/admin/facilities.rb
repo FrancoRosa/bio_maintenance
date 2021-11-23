@@ -5,7 +5,7 @@ ActiveAdmin.register Facility do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :name, :address, :lat, :lng, :contact_name, :contact_phone
+  permit_params :name, :address, :lat, :lng, :contact_name, :contact_phone
   #
   # or
   #
