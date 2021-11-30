@@ -16,7 +16,7 @@ ActiveAdmin.register_page 'Dashboard' do
         panel 'Mantenimientos recientes' do
           ul do
             Maintenance.last(10).map do |m|
-              li link_to("#{m.device.name} - #{m.maintainer.name} - #{m.created_at}", maintenance_path(m))
+              li link_to("#{m.device.name} - #{m.maintainer.name} - #{m.created_at}", admin_maintenance_path(m))
             end
           end
         end
