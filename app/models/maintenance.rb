@@ -9,6 +9,12 @@ class Maintenance < ApplicationRecord
 
   def update_device
     device = Device.find(device_id)
-    device.update(last_maintenance: created_at)
+    maintenance = device.maintenances.last
+    if maintenance.maintenance_type == 'Preventivo'
+      device.update(last_maintenance: created_at)
+      puts '... last maintenance updated'
+    else
+      puts '... last maintenance not updated'
+    end
   end
 end
